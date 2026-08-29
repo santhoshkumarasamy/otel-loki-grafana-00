@@ -37,11 +37,23 @@ kubectl port-forward service/my-argo-cd-argocd-server -n default 8080:80 --addre
 You can find all the argo-cd Application manifest under ``argo_cd_apps`` folder
 
 ```sh
-kubectl apply -f grafana.yaml
 kubectl apply -f test_app.yaml
+kubectl -n nginx-test port-forward svc/nginx-deployment 8083:80 --address 0.0.0.0
 ```
+I have exposed the nginx deployment to my need you can change it
+
 
 You might want to update the ``test_app.yaml`` file to point to your own github repo.
+
+## Setup cert manager 
+
+Cert Manager is a prerequiste for otel for managing tls certificates which are used internally in the communication
+
+## deploy grafana to view the logs
+
+```sh
+kubectl apply -f grafana.yaml
+```
 Once deployed everything, expose the grafana and get admin password
 ```sh
 kubectl -n grafana get secret grafana -o jsonpath={.data.admin-password} | base64 -d
