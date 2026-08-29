@@ -1,0 +1,4 @@
+scrapeConfigs:
+  kubernetes-api-servers:
+    tls_config:
+      insecure_skip_verify: true

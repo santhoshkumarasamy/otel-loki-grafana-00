@@ -1,0 +1,5 @@
+# grafana.ini:
+#   server:
+#     root_url: "%(protocol)s://%(domain)s/"
+
+namespaceOverride: "grafana"

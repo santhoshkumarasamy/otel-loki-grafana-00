@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-app
+  namespace: default
+spec:
+  destination:
+    namespace: nginx-test
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: test_app
+    repoURL: https://github.com/santhoshkumarasamy/grafana-prometheus-00
+    targetRevision: main
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: false
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

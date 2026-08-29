@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: default
+spec:
+  destination:
+    namespace: prometheus
+    server: https://kubernetes.default.svc
+  source:
+    path: ''
+    repoURL: ''
+    targetRevision: HEAD
+  sources:
+    - path: ''
+      repoURL: https://github.com/santhoshkumarasamy/grafana-prometheus-00
+      targetRevision: main
+      ref: values
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 29.27.0
+      chart: prometheus
+      helm:
+        valueFiles:
+          - $values/helm_charts/00_prometheus.yaml
+  project: default
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
