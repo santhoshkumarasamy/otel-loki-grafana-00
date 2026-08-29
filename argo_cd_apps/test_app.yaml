@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: test_app
-    repoURL: https://github.com/santhoshkumarasamy/grafana-prometheus-00
+    repoURL: https://github.com/santhoshkumarasamy/otel-loki-grafana-00
     targetRevision: main
   syncPolicy:
     automated:
